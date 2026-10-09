@@ -114,26 +114,48 @@ header .home img { border-radius: 7px; }
   <section id="privacy">
     <p class="lang">English</p>
     <h2>Privacy policy</h2>
-    <p>Bouclier collects no personal data. It has no account, no analytics, no advertising and no tracking, and it sends nothing to its developer or to anyone else.</p>
+    <p>Bouclier collects no personal data. It has no account, no analytics, no advertising and no tracking, and it sends nothing to its developer or to anyone else, except Apple’s proof of purchase when you ask for your free code (below).</p>
     <ul>
       <li>Blocking is done by Safari's built-in engine: Safari applies Bouclier's rules itself, so Bouclier never sees the pages you visit.</li>
       <li>To hide ad spaces, close pop-up ads and remove video ads, Bouclier's scripts run inside the pages you open, on your device only, and send nothing anywhere.</li>
       <li>Statistics (how many requests were blocked, and on which sites and addresses) and your settings, including the sites you paused and the elements you hid, are stored on your device, in Safari's extension storage. Sites you visit in Private Browsing are not recorded. You can reset the statistics in Bouclier's settings, and deleting the app deletes everything.</li>
       <li>Bouclier makes no network requests of its own. New filter lists arrive with app updates from the App Store.</li>
+      <li>Only if you choose “Get my free code” (for Bouclier in Chrome, Edge and Firefox), the app opens Bouclier’s payment site in your browser with Apple’s proof that your Apple account bought the app. The site checks that proof with Apple, shows your code and keeps nothing.</li>
     </ul>
-    <p class="muted">Last updated 23 September 2026. Questions: <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
+    <h3>Bouclier for Chrome, Edge and Firefox</h3>
+    <p>The browser extension follows the same rules: it collects nothing and sends nothing anywhere.</p>
+    <ul>
+      <li>Blocking is done by the browser's built-in engine (declarativeNetRequest), which applies Bouclier's rules itself. Firefox does not tell extensions what its engine blocked, so there Bouclier notes the addresses Firefox stopped, only to count them; they never leave your computer.</li>
+      <li>Statistics and settings are stored in the browser's extension storage on your computer. Pages opened in Incognito or private windows are not recorded. Removing the extension deletes everything.</li>
+      <li>New filter lists arrive with extension updates, which the browser installs from its store.</li>
+      <li>After a 7-day trial, Bouclier asks for an unlock code. It checks the code on your computer, without any server, and keeps it in the browser’s synced storage, so the same browser on your other computers is unlocked too.</li>
+      <li>Codes are sold on Bouclier’s payment site, through Stripe, which is the seller (Stripe Managed Payments): what you type on the payment page goes to Stripe, under <a href="https://stripe.com/privacy">Stripe’s privacy policy</a>. The site then asks Stripe whether the order is paid and shows your code. It has no account, no cookies and no analytics, and it keeps no record; its host, Vercel, keeps basic request logs.</li>
+      <li>“Invite 3 friends”: the payment site makes a random reference for your invitation link. A friend who buys through that link sends the reference to Stripe with the order, and the site counts the paid orders that carry it, to give you a free code at the third. The reference names no one. Bouclier keeps your invitation, or the reference of the friend who invited you, in the browser’s synced storage.</li>
+    </ul>
+    <p class="muted">Last updated 4 October 2026. Questions: <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
 
     <div class="fr" lang="fr">
       <p class="lang">Français</p>
       <h2>Politique de confidentialité</h2>
-      <p>Bouclier ne collecte aucune donnée personnelle. Pas de compte, pas de mesure d’audience, pas de publicité ni de pistage, et rien n’est envoyé à son développeur ni à personne.</p>
+      <p>Bouclier ne collecte aucune donnée personnelle. Pas de compte, pas de mesure d’audience, pas de publicité ni de pistage, et rien n’est envoyé à son développeur ni à personne, sauf la preuve d’achat d’Apple quand vous demandez votre code gratuit (ci-dessous).</p>
       <ul>
         <li>Le blocage est fait par le moteur intégré à Safari : c’est Safari qui applique les règles de Bouclier, qui ne voit donc jamais les pages que vous visitez.</li>
         <li>Pour masquer les espaces publicitaires, fermer les pop-up et retirer les publicités vidéo, les scripts de Bouclier s’exécutent dans les pages que vous ouvrez, uniquement sur votre appareil, et n’envoient rien nulle part.</li>
         <li>Les statistiques (nombre de requêtes bloquées, sites et adresses concernés) et vos réglages, dont les sites mis en pause et les éléments masqués, restent sur votre appareil, dans le stockage des extensions de Safari. Les sites visités en navigation privée ne sont pas enregistrés. Vous pouvez remettre les statistiques à zéro dans les réglages de Bouclier, et supprimer l’app efface tout.</li>
         <li>Bouclier ne fait aucune requête réseau. Les nouvelles listes de filtres arrivent avec les mises à jour de l’app sur l’App Store.</li>
+        <li>Seulement si vous choisissez « Obtenir mon code gratuit » (pour Bouclier dans Chrome, Edge et Firefox), l’app ouvre le site de paiement de Bouclier dans votre navigateur avec la preuve, fournie par Apple, que votre compte Apple a acheté l’app. Le site vérifie cette preuve auprès d’Apple, affiche votre code et ne garde rien.</li>
       </ul>
-      <p class="muted">Mise à jour le 23 septembre 2026. Questions : <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
+      <h3>Bouclier pour Chrome, Edge et Firefox</h3>
+      <p>L’extension pour navigateur suit les mêmes règles : elle ne collecte rien et n’envoie rien nulle part.</p>
+      <ul>
+        <li>Le blocage est fait par le moteur intégré au navigateur (declarativeNetRequest), qui applique lui-même les règles de Bouclier. Firefox ne dit pas aux extensions ce que son moteur a bloqué : Bouclier y note donc les adresses arrêtées par Firefox, seulement pour les compter, et elles ne quittent jamais votre ordinateur.</li>
+        <li>Les statistiques et les réglages sont stockés dans le stockage des extensions du navigateur, sur votre ordinateur. Les pages ouvertes en navigation privée ne sont pas enregistrées. Supprimer l’extension efface tout.</li>
+        <li>Les nouvelles listes de filtres arrivent avec les mises à jour de l’extension, que le navigateur installe depuis sa boutique.</li>
+        <li>Après un essai de 7 jours, Bouclier demande un code de déblocage. Il vérifie le code sur votre ordinateur, sans aucun serveur, et le garde dans le stockage synchronisé du navigateur : le même navigateur sur vos autres ordinateurs est débloqué aussi.</li>
+        <li>Les codes sont vendus sur le site de paiement de Bouclier, par Stripe, qui est le vendeur (Stripe Managed Payments) : ce que vous saisissez sur la page de paiement va à Stripe, selon <a href="https://stripe.com/fr/privacy">la politique de confidentialité de Stripe</a>. Le site demande ensuite à Stripe si la commande est payée et affiche votre code. Il n’a ni compte, ni cookies, ni mesure d’audience, et ne garde aucune trace ; son hébergeur, Vercel, conserve des journaux de requêtes de base.</li>
+        <li>« Inviter 3 amis » : le site de paiement crée une référence aléatoire pour votre lien d’invitation. Un ami qui achète par ce lien transmet cette référence à Stripe avec sa commande, et le site compte les commandes payées qui la portent, pour vous offrir un code à la troisième. La référence ne désigne personne. Bouclier garde votre invitation, ou la référence de l’ami qui vous a invité, dans le stockage synchronisé du navigateur.</li>
+      </ul>
+      <p class="muted">Mise à jour le 4 octobre 2026. Questions : <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
     </div>
   </section>
 
