@@ -145,6 +145,8 @@ footer nav { display: flex; gap: 8px 20px; flex-wrap: wrap; }
 .stores { margin: 26px 0 0; }
 .stores img { display: block; height: 50px; width: auto; }
 .store-badge { display: block; height: 46px; width: auto; margin-top: 6px; opacity: .55; filter: grayscale(.3); }
+.store-badge.live, .edge-btn.live { opacity: 1; filter: none; }
+a.edge-btn { text-decoration: none; }
 .edge-btn { display: inline-flex; align-items: center; height: 46px; margin-top: 6px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--line); font-weight: 600; font-size: 15px; opacity: .55; }
 .badge { display: block; width: fit-content; margin-top: 10px; font: 600 12px/1 var(--body); letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
@@ -221,12 +223,13 @@ footer nav { display: flex; gap: 8px 20px; flex-wrap: wrap; }
     </section>
 
     <section class="band" aria-labelledby="browsers">
-      <h2 id="browsers"><span class="en">Also for Chrome, Edge and Firefox</span><span class="fr">Aussi pour Chrome, Edge et Firefox</span></h2>
+      <h2 id="browsers"><span class="en">Also for Chrome, Edge, Firefox and Android</span><span class="fr">Aussi pour Chrome, Edge, Firefox et Android</span></h2>
       <p class="intro reveal"><span class="en">The same blocking and the same menu in your computer's other browsers. Free for 7 days, then one payment of 1,99 € unlocks it in all your browsers, for good. Already bought Bouclier on the App Store? Your code is free: open the app and choose “Get my free code”.</span><span class="fr">Le même blocage et le même menu dans les autres navigateurs de votre ordinateur. Gratuit pendant 7 jours, puis un seul paiement de 1,99 € le débloque dans tous vos navigateurs, pour toujours. Vous avez acheté Bouclier sur l’App Store ? Votre code est gratuit : ouvrez l’app et choisissez « Obtenir mon code gratuit ».</span></p>
       <div class="browsers">
-        <div class="browser reveal"><h3>Chrome</h3><img class="store-badge" src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Available in the Chrome Web Store" width="165" height="50"><span class="badge"><span class="en">Coming soon</span><span class="fr">Bientôt</span></span></div>
-        <div class="browser reveal d1"><h3>Edge</h3><span class="edge-btn"><span class="en">Microsoft Edge Add-ons</span><span class="fr">Modules Microsoft Edge</span></span><span class="badge"><span class="en">Coming soon</span><span class="fr">Bientôt</span></span></div>
-        <div class="browser reveal d2"><h3>Firefox</h3><img class="store-badge" src="https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png" alt="Get the add-on for Firefox" width="143" height="50"><span class="badge"><span class="en">Coming soon</span><span class="fr">Bientôt</span></span></div>
+        <div class="browser reveal"><h3>Chrome</h3><a href="https://chromewebstore.google.com/detail/bouclier/ibcefekgkchdbpmjcopdnodhefgbpndo"><img class="store-badge live" src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Available in the Chrome Web Store" width="165" height="50"></a></div>
+        <div class="browser reveal d1"><h3>Edge</h3><a class="edge-btn live" href="https://microsoftedge.microsoft.com/addons/detail/bouclier/bajmaipppnmhpoiadckmlekgiejabhmd"><span class="en">Microsoft Edge Add-ons</span><span class="fr">Modules Microsoft Edge</span></a></div>
+        <div class="browser reveal d2"><h3>Firefox</h3><a href="https://addons.mozilla.org/firefox/addon/bouclier/"><img class="store-badge live" src="https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png" alt="Get the add-on for Firefox" width="143" height="50"></a></div>
+        <div class="browser reveal d2"><h3>Android</h3><a class="edge-btn live" href="android.html"><span class="en">Download for Android</span><span class="fr">Télécharger pour Android</span></a></div>
       </div>
     </section>
 

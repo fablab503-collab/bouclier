@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bouclier for Android</title>
+<meta name="description" content="Bouclier for Android blocks ads, trackers and malware in Chrome and every app, on your phone, with no server and no account.">
+<link rel="icon" href="icon.png">
+<style>
+:root {
+  --ground: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #16181d;
+  --ink-2: #5b6170;
+  --line: #e1e4ea;
+  --accent: #2356d5;
+  --on-accent: #ffffff;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0e1116;
+    --surface: #171b22;
+    --ink: #eceff4;
+    --ink-2: #a3aab8;
+    --line: #2a303b;
+    --accent: #8cb0ff;
+    --on-accent: #0e1116;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0e1116;
+  --surface: #171b22;
+  --ink: #eceff4;
+  --ink-2: #a3aab8;
+  --line: #2a303b;
+  --accent: #8cb0ff;
+  --on-accent: #0e1116;
+}
+body { margin: 0; background: var(--ground); color: var(--ink); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+.page { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; display: grid; gap: 28px; }
+header h1 { margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; }
+header p { margin: 8px 0 0; color: var(--ink-2); }
+a { color: var(--accent); }
+section { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+h2 { margin: 0 0 10px; font-size: 21px; line-height: 1.25; }
+h3 { margin: 18px 0 6px; font-size: 16px; }
+p, li { max-width: 68ch; }
+p { margin: 0 0 10px; }
+ul, ol { margin: 0 0 10px; padding-left: 22px; }
+li { margin-bottom: 6px; }
+.lang { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 6px; }
+.fr { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 16px; }
+.muted { color: var(--ink-2); font-size: 14px; }
+header .home { margin: 0 0 18px; }
+header .home a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 700; }
+header .home img { border-radius: 7px; }
+.download { display: inline-block; margin: 6px 0 12px; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); font-weight: 700; text-decoration: none; }
+code { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <p class="home"><a href="./"><img src="icon.png" alt="" width="28" height="28">Bouclier</a></p>
+    <h1>Bouclier for Android</h1>
+    <p>Ads, trackers and malware blocked in Chrome and every app · Bouclier pour Android</p>
+  </header>
+
+  <section id="download">
+    <p class="lang">English</p>
+    <h2>Download</h2>
+    <a class="download" href="https://github.com/fablab503-collab/bouclier/releases/download/android-1.3.1/bouclier-android-1.3.1.apk">Download Bouclier 1.3.1 for Android (11 MB)</a>
+    <p class="muted">Android 8 or newer. SHA-256 of the file: <code>f0bf9fee370c3d7ea0c200b7c4fd89b105f8f30ca119c8532f3480a813d88607</code></p>
+    <h3>Install</h3>
+    <ol>
+      <li>Download the file on your phone and open it.</li>
+      <li>If Android asks, allow your browser to install apps, then tap Install.</li>
+      <li>Open Bouclier and tap the shield. Android asks once to allow a VPN connection: this is how Bouclier filters addresses, on your phone only.</li>
+    </ol>
+    <h3>What it does</h3>
+    <ul>
+      <li>Blocks ads, trackers and malicious sites in Chrome, in your news apps, in games, everywhere.</li>
+      <li>90,000+ addresses from EasyList, EasyPrivacy, Liste FR and the Online Malicious URL Blocklist.</li>
+      <li>See what was blocked today, this week and all time; allow a site in one tap; pause for 1 hour, 2 hours or until tomorrow.</li>
+      <li>English and French. Starts again after a restart.</li>
+    </ul>
+    <h3>Privacy</h3>
+    <p>Bouclier answers your phone's address lookups itself and blocks the ones that lead to ads, trackers and malware. It uses Android's VPN feature to do this, but nothing leaves your phone: no server, no account, no analytics, no data collection.</p>
+    <h3>Limits</h3>
+    <ul>
+      <li>Blocking works at the address level, so empty ad spaces can remain inside pages.</li>
+      <li>Android allows one VPN at a time, so Bouclier cannot run together with another VPN app.</li>
+    </ul>
+    <h3>Why not Google Play?</h3>
+    <p>Google Play does not allow apps that block ads in other apps. Bouclier is registered with Google's Android developer verification under its developer's verified identity, so it installs normally on certified Android phones.</p>
+
+    <div class="fr" lang="fr">
+      <p class="lang">Français</p>
+      <h2>Téléchargement</h2>
+      <a class="download" href="https://github.com/fablab503-collab/bouclier/releases/download/android-1.3.1/bouclier-android-1.3.1.apk">Télécharger Bouclier 1.3.1 pour Android (11 Mo)</a>
+      <p class="muted">Android 8 ou plus récent. SHA-256 du fichier : <code>f0bf9fee370c3d7ea0c200b7c4fd89b105f8f30ca119c8532f3480a813d88607</code></p>
+      <h3>Installation</h3>
+      <ol>
+        <li>Téléchargez le fichier sur votre téléphone et ouvrez-le.</li>
+        <li>Si Android le demande, autorisez votre navigateur à installer des apps, puis touchez Installer.</li>
+        <li>Ouvrez Bouclier et touchez le bouclier. Android demande une fois d’autoriser une connexion VPN : c’est ainsi que Bouclier filtre les adresses, uniquement sur votre téléphone.</li>
+      </ol>
+      <h3>Ce qu’il fait</h3>
+      <ul>
+        <li>Bloque pubs, traqueurs et sites malveillants dans Chrome, vos apps d’info, vos jeux, partout.</li>
+        <li>Plus de 90 000 adresses d’EasyList, EasyPrivacy, Liste FR et Online Malicious URL Blocklist.</li>
+        <li>Voir ce qui a été bloqué aujourd’hui, cette semaine et depuis le début ; autoriser un site en un geste ; pause 1 heure, 2 heures ou jusqu’à demain.</li>
+        <li>Français et anglais. Redémarre tout seul après un redémarrage du téléphone.</li>
+      </ul>
+      <h3>Confidentialité</h3>
+      <p>Bouclier répond lui-même aux recherches d’adresses du téléphone et bloque celles qui mènent aux pubs, traqueurs et malwares. Il utilise la fonction VPN d’Android, mais rien ne quitte votre téléphone : pas de serveur, pas de compte, aucune statistique, aucune collecte de données.</p>
+      <h3>Limites</h3>
+      <ul>
+        <li>Le blocage se fait au niveau des adresses : des espaces de pub vides peuvent rester dans les pages.</li>
+        <li>Android n’autorise qu’un VPN à la fois : Bouclier ne peut pas fonctionner avec une autre app VPN.</li>
+      </ul>
+      <h3>Pourquoi pas Google Play ?</h3>
+      <p>Google Play n’autorise pas les apps qui bloquent les publicités dans d’autres apps. Bouclier est enregistré auprès de la vérification des développeurs Android de Google, sous l’identité vérifiée de son développeur : il s’installe normalement sur les téléphones Android certifiés.</p>
+    </div>
+  </section>
+
+  <p class="muted"><a href="support.html">Support</a> · <a href="support.html#privacy">Privacy / Confidentialité</a> · <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a></p>
+</div>
+
+</body>
+</html>
