@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bouclier Support</title>
-<meta name="description" content="Help, contact, privacy policy and credits for Bouclier, the ad blocker for Safari on Mac, iPhone and iPad.">
+<meta name="description" content="Help, contact, privacy policy and credits for Bouclier, the ad blocker for Safari on Mac, iPhone and iPad, Android, and Chrome, Edge and Firefox.">
 <link rel="icon" href="icon.png">
 <style>
 :root {
@@ -132,7 +132,15 @@ header .home img { border-radius: 7px; }
       <li>Codes are sold on Bouclier’s payment site, through Stripe, which is the seller (Stripe Managed Payments): what you type on the payment page goes to Stripe, under <a href="https://stripe.com/privacy">Stripe’s privacy policy</a>. The site then asks Stripe whether the order is paid and shows your code. It has no account, no cookies and no analytics, and it keeps no record; its host, Vercel, keeps basic request logs.</li>
       <li>“Invite 3 friends”: the payment site makes a random reference for your invitation link. A friend who buys through that link sends the reference to Stripe with the order, and the site counts the paid orders that carry it, to give you a free code at the third. The reference names no one. Bouclier keeps your invitation, or the reference of the friend who invited you, in the browser’s synced storage.</li>
     </ul>
-    <p class="muted">Last updated 4 October 2026. Questions: <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
+    <h3>Bouclier for Android</h3>
+    <p>The Android app follows the same rules: it collects nothing and sends nothing to Bouclier, because there is no Bouclier server.</p>
+    <ul>
+      <li>Blocking uses Android's VPN feature, on the phone only. Bouclier creates a local VPN interface that carries only the phone's address lookups (DNS); addresses on its block lists get a "no such name" answer, every other lookup is passed to your network's own DNS server (or to Quad9, 9.9.9.9, when the network offers none Bouclier can use). No other traffic enters the VPN.</li>
+      <li>Counts of blocked requests, the recently blocked list and your allowed sites are stored on the phone only. Uninstalling the app deletes everything.</li>
+      <li>The app asks for the VPN permission (to filter lookups) and for notifications (to show that protection is on). It requests nothing else: no contacts, no location, no identifiers.</li>
+      <li>New filter lists arrive with new versions of the app, downloaded from this website.</li>
+    </ul>
+    <p class="muted">Last updated 13 October 2026. Questions: <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
 
     <div class="fr" lang="fr">
       <p class="lang">Français</p>
@@ -155,7 +163,15 @@ header .home img { border-radius: 7px; }
         <li>Les codes sont vendus sur le site de paiement de Bouclier, par Stripe, qui est le vendeur (Stripe Managed Payments) : ce que vous saisissez sur la page de paiement va à Stripe, selon <a href="https://stripe.com/fr/privacy">la politique de confidentialité de Stripe</a>. Le site demande ensuite à Stripe si la commande est payée et affiche votre code. Il n’a ni compte, ni cookies, ni mesure d’audience, et ne garde aucune trace ; son hébergeur, Vercel, conserve des journaux de requêtes de base.</li>
         <li>« Inviter 3 amis » : le site de paiement crée une référence aléatoire pour votre lien d’invitation. Un ami qui achète par ce lien transmet cette référence à Stripe avec sa commande, et le site compte les commandes payées qui la portent, pour vous offrir un code à la troisième. La référence ne désigne personne. Bouclier garde votre invitation, ou la référence de l’ami qui vous a invité, dans le stockage synchronisé du navigateur.</li>
       </ul>
-      <p class="muted">Mise à jour le 4 octobre 2026. Questions : <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
+      <h3>Bouclier pour Android</h3>
+      <p>L’app Android suit les mêmes règles : elle ne collecte rien et n’envoie rien à Bouclier, puisqu’il n’y a pas de serveur Bouclier.</p>
+      <ul>
+        <li>Le blocage utilise la fonction VPN d’Android, sur le téléphone uniquement. Bouclier crée une interface VPN locale qui ne transporte que les recherches d’adresses (DNS) du téléphone ; les adresses de ses listes de blocage reçoivent la réponse « nom inexistant », toutes les autres sont transmises au serveur DNS de votre réseau (ou à Quad9, 9.9.9.9, quand le réseau n’en propose aucun que Bouclier puisse utiliser). Aucun autre trafic n’entre dans le VPN.</li>
+        <li>Les compteurs de requêtes bloquées, la liste des blocages récents et vos sites autorisés sont stockés sur le téléphone uniquement. Désinstaller l’app efface tout.</li>
+        <li>L’app demande l’autorisation VPN (pour filtrer les recherches) et les notifications (pour indiquer que la protection est active). Rien d’autre : ni contacts, ni position, ni identifiants.</li>
+        <li>Les nouvelles listes de filtres arrivent avec les nouvelles versions de l’app, téléchargées depuis ce site.</li>
+      </ul>
+      <p class="muted">Mise à jour le 13 octobre 2026. Questions : <a href="mailto:fablab503@gmail.com">fablab503@gmail.com</a>.</p>
     </div>
   </section>
 
