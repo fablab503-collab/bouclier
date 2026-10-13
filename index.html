@@ -142,7 +142,7 @@ footer nav { display: flex; gap: 8px 20px; flex-wrap: wrap; }
 .browser { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
 .browser h3 { margin-bottom: 4px; }
 .browser p { margin: 0; color: var(--ink-2); font-size: 15px; }
-.stores { margin: 26px 0 0; }
+.stores { margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
 .stores img { display: block; height: 50px; width: auto; }
 .store-badge { display: block; height: 46px; width: auto; margin-top: 6px; opacity: .55; filter: grayscale(.3); }
 .store-badge.live, .edge-btn.live { opacity: 1; filter: none; }
@@ -176,14 +176,15 @@ a.edge-btn { text-decoration: none; }
   <main>
     <div class="hero">
       <div>
-        <p class="eyebrow"><span class="en">Safari on Mac, iPhone, iPad · Chrome, Edge, Firefox</span><span class="fr">Safari sur Mac, iPhone, iPad · Chrome, Edge, Firefox</span></p>
+        <p class="eyebrow"><span class="en">Safari on Mac, iPhone, iPad · Chrome, Edge, Firefox · Android</span><span class="fr">Safari sur Mac, iPhone, iPad · Chrome, Edge, Firefox · Android</span></p>
         <h1><span class="en">Ads and trackers, stopped before they load.</span><span class="fr">Pubs et traqueurs arrêtés avant de se charger.</span></h1>
         <p class="lede">
-          <span class="en">Bouclier is an ad blocker for Safari, and soon for Chrome, Edge and Firefox. The browser applies its rules itself, so pages open faster, use less data, and Bouclier never sees the sites you visit.</span>
-          <span class="fr">Bouclier est un bloqueur de publicités pour Safari, et bientôt pour Chrome, Edge et Firefox. C’est le navigateur qui applique ses règles : les pages s’ouvrent plus vite, consomment moins de données, et Bouclier ne voit jamais les sites que vous visitez.</span>
+          <span class="en">Bouclier is an ad blocker for Safari, Chrome, Edge and Firefox, and for your whole Android phone. In the browsers, the browser applies its rules itself, so pages open faster, use less data, and Bouclier never sees the sites you visit.</span>
+          <span class="fr">Bouclier est un bloqueur de publicités pour Safari, Chrome, Edge et Firefox, et pour tout votre téléphone Android. Dans les navigateurs, c’est le navigateur qui applique ses règles : les pages s’ouvrent plus vite, consomment moins de données, et Bouclier ne voit jamais les sites que vous visitez.</span>
         </p>
         <p class="stores">
           <a href="https://apps.apple.com/app/id6815206191"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="150" height="50"></a>
+          <a href="android.html"><img src="img/download-for-android.svg" alt="Download for Android" width="150" height="50"></a>
         </p>
         <ul class="facts">
           <li><span class="en">One purchase for Mac, iPhone and iPad</span><span class="fr">Un seul achat pour Mac, iPhone et iPad</span></li>
