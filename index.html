@@ -96,6 +96,36 @@ h1 { margin: 0; font: 700 clamp(40px, 6vw, 64px)/1.02 var(--display); letter-spa
 .split { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
 .split .intro { margin-bottom: 16px; }
 
+/* Apple | Android: a slanted blue line to drag across the picture (the script at the end) */
+.cmp { position: relative; --pos: 50%; --dx: 17%; touch-action: pan-y; cursor: ew-resize; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.cmp img { pointer-events: none; -webkit-user-drag: none; }
+.cmp-b { position: absolute; inset: 0; clip-path: polygon(calc(var(--pos) + var(--dx)) 0, 100% 0, 100% 100%, calc(var(--pos) - var(--dx)) 100%); }
+/* each side shows only on its own side of the line: the devices differ in size, so neither may show through the other */
+.cmp > img { clip-path: polygon(0 0, calc(var(--pos) + var(--dx)) 0, calc(var(--pos) - var(--dx)) 100%, 0 100%); }
+.cmp-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.cmp-line { position: absolute; left: var(--pos); top: 50%; width: 3px; height: 130%; border-radius: 2px; background: #2f6bff;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.75), 0 0 16px rgba(47,107,255,.6); transform: translate(-50%, -50%) rotate(var(--tilt, 30deg)); }
+.cmp-knob { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%; background: #fff; color: #2f6bff;
+  box-shadow: 0 0 0 2.5px #2f6bff, 0 4px 14px rgba(10,20,60,.28); display: grid; place-items: center; pointer-events: none; transition: transform .2s ease; }
+.cmp.dragging .cmp-knob { transform: scale(1.1); }
+.cmp-line { transition: opacity .25s ease; }
+figure[data-side="a"] .cmp-line, figure[data-side="b"] .cmp-line { opacity: 0; }   /* pushed out: no trace left in the corner */
+.cmp.kbd .cmp-knob { outline: 3px solid var(--accent); outline-offset: 4px; }
+.cmp-range { position: absolute; left: 50%; bottom: 0; width: 1px; height: 1px; margin: 0; padding: 0; opacity: 0; overflow: hidden; }
+.cmp-legend { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 16px 2px 0; }
+.cmp-side { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink); font: 600 14px/1.1 var(--body); cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.cmp-side svg { flex: 0 0 auto; }
+figure[data-side="a"] .cmp-side[data-go="a"], figure[data-side="b"] .cmp-side[data-go="b"] { background: var(--accent); border-color: var(--accent); color: var(--ground); }
+.cmp-hint { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); text-align: center; }
+.cmp-hint::before { content: ""; width: 3px; height: 16px; border-radius: 2px; background: #2f6bff; transform: rotate(30deg); flex: 0 0 auto; }
+.cmp-notes { display: grid; margin: 12px 2px 0; }
+.cmp-note { grid-area: 1 / 1; margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-2); opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s; }
+.cmp-note b { color: var(--ink); }
+figure[data-side="mid"] .cmp-note[data-for="mid"], figure[data-side="a"] .cmp-note[data-for="a"], figure[data-side="b"] .cmp-note[data-for="b"] {
+  opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .35s ease, visibility 0s; }
+
 /* sections */
 section.band { padding-block: 64px; border-top: 1px solid var(--line); }
 h2 { margin: 0 0 8px; font: 700 clamp(26px, 3.4vw, 34px)/1.15 var(--display); letter-spacing: -0.02em; text-wrap: balance; }
@@ -151,6 +181,11 @@ a.edge-btn { text-decoration: none; }
 .badge { display: block; width: fit-content; margin-top: 10px; font: 600 12px/1 var(--body); letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .hero .shot .tilt, .split .shot .tilt { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .cmp-note, .cmp-knob, .cmp-side { transition: none !important; }
+}
+@media (max-width: 520px) {
+  .cmp-hint span { display: none; }
+  .cmp-side { padding: 7px 11px; font-size: 13px; }
 }
 @media (max-width: 860px) {
   .browsers { grid-template-columns: 1fr; }
@@ -186,7 +221,7 @@ a.edge-btn { text-decoration: none; }
           <a href="https://apps.apple.com/app/id6815206191"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="150" height="50"></a>
           <a href="android.html"><img src="img/download-for-android.svg" alt="Download for Android" width="150" height="50"></a>
           <a href="https://chromewebstore.google.com/detail/bouclier/ibcefekgkchdbpmjcopdnodhefgbpndo"><img src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Available in the Chrome Web Store" width="165" height="50"></a>
-          <a href="https://microsoftedge.microsoft.com/addons/detail/bouclier/bajmaipppnmhpoiadckmlekgiejabhmd"><img src="img/get-it-for-edge.svg" alt="Get it for Microsoft Edge" width="150" height="50"></a>
+          <a href="https://microsoftedge.microsoft.com/addons/detail/bouclier/bajmaipppnmhpoiadckmlekgiejabhmd"><img src="img/get-it-from-edge-addons.svg" alt="Get it from Microsoft Edge Add-ons" width="180" height="50"></a>
           <a href="https://addons.mozilla.org/firefox/addon/bouclier/"><img src="https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png" alt="Get the add-on for Firefox" width="143" height="50"></a>
         </p>
         <ul class="facts">
@@ -196,12 +231,28 @@ a.edge-btn { text-decoration: none; }
         </ul>
       </div>
 
-      <figure class="shot">
+      <figure class="shot" data-side="mid">
         <div class="tilt">
+        <div class="cmp" data-tilt="30">
         <img class="en" src="img/mac-en.webp" width="1600" height="966" loading="eager" decoding="async" alt="Bouclier's menu open in Safari on a MacBook Pro, on a news site: 15 requests blocked on this page, and Pause on this site for 1 hour, 2 hours or until tomorrow.">
         <img class="fr" src="img/mac-fr.webp" width="1600" height="966" loading="eager" decoding="async" lang="fr" alt="Le menu de Bouclier ouvert dans Safari sur un MacBook Pro, sur un site d’actualité : 15 requêtes bloquées sur cette page, et Mettre en pause sur ce site pendant 1 heure, 2 heures ou jusqu’à demain.">
+        <div class="cmp-b">
+        <img class="en" src="img/chromebook-en.webp" width="1600" height="966" loading="eager" decoding="async" alt="Bouclier's menu open in Chrome on a Chromebook, on the same news site: 15 requests blocked on this page, and Pause on this site for 1 hour, 2 hours or until tomorrow.">
+        <img class="fr" src="img/chromebook-fr.webp" width="1600" height="966" loading="eager" decoding="async" lang="fr" alt="Le menu de Bouclier ouvert dans Chrome sur un Chromebook, sur le même site d’actualité : 15 requêtes bloquées sur cette page, et Mettre en pause sur ce site pendant 1 heure, 2 heures ou jusqu’à demain.">
         </div>
-        <figcaption class="caption"><span class="en">Bouclier's menu in Safari on Mac: what the page tried to load, and a pause for this site.</span><span class="fr">Le menu de Bouclier dans Safari sur Mac : ce que la page voulait charger, et une pause pour ce site.</span></figcaption>
+        <div class="cmp-lines" aria-hidden="true"><span class="cmp-line"></span></div>
+        <span class="cmp-knob"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2 2 7l5 5M15 2l5 5-5 5"/></svg></span>
+        <input class="cmp-range" type="range" min="0" max="100" step="1" value="50" aria-label="Mac / Chromebook">
+        </div>
+        </div>
+        <figcaption>
+          <div class="cmp-legend"><button class="cmp-side" type="button" data-go="a">Mac</button><span class="cmp-hint"><span class="en">Drag the blue line</span><span class="fr">Faites glisser la ligne bleue</span></span><button class="cmp-side" type="button" data-go="b">Chromebook</button></div>
+          <div class="cmp-notes">
+            <p class="cmp-note" data-for="mid"><span class="en">The same Bouclier menu in Safari on Mac and in Chrome on a Chromebook: what the page tried to load, and a pause for this site.</span><span class="fr">Le même menu Bouclier dans Safari sur Mac et dans Chrome sur Chromebook : ce que la page voulait charger, et une pause pour ce site.</span></p>
+            <p class="cmp-note" data-for="a"><span class="en"><b>Safari on Mac.</b> Blocks ads, trackers, pop-up ads and malware sites. Allowed on all websites, it also removes video ads on YouTube and hides the empty ad spaces.</span><span class="fr"><b>Safari sur Mac.</b> Bloque les pubs, les traqueurs, les pop-up et les sites malveillants. Autorisé sur tous les sites, il retire aussi les publicités vidéo sur YouTube et masque les espaces vides.</span></p>
+            <p class="cmp-note" data-for="b"><span class="en"><b>Chrome on a Chromebook.</b> Bouclier for Chrome brings the same blocking and the same menu: ads, trackers, pop-up ads, malware sites and video ads on YouTube.</span><span class="fr"><b>Chrome sur Chromebook.</b> Bouclier pour Chrome apporte le même blocage et le même menu : pubs, traqueurs, pop-up, sites malveillants et publicités vidéo sur YouTube.</span></p>
+          </div>
+        </figcaption>
       </figure>
     </div>
 
@@ -217,11 +268,28 @@ a.edge-btn { text-decoration: none; }
           <p class="intro reveal"><span class="en">In Safari, open the page menu in the address bar and tap Bouclier: see what was blocked, pause the site for 1 hour, 2 hours or until tomorrow, or hide an element. When the pause ends, protection comes back by itself.</span><span class="fr">Dans Safari, ouvrez le menu de la page dans la barre d’adresse et touchez Bouclier : voyez ce qui a été bloqué, mettez le site en pause 1 heure, 2 heures ou jusqu’à demain, ou masquez un élément. À la fin de la pause, la protection revient d’elle-même.</span></p>
           <p class="note"><span class="en">Bouclier speaks your device's language: French on a device set to French, English everywhere else.</span><span class="fr">Bouclier parle la langue de votre appareil : français sur un appareil réglé en français, anglais partout ailleurs.</span></p>
         </div>
-        <figure class="shot">
+        <figure class="shot" data-side="mid">
           <div class="tilt">
+          <div class="cmp" data-tilt="30">
           <img class="en" src="img/ipad-iphone-en.webp" width="1600" height="1489" loading="lazy" decoding="async" alt="Bouclier on an iPad Pro, as a menu under its toolbar button, and on an iPhone 17 Pro, as a sheet: 15 requests blocked on this page, Pause on this site for 1 hour, 2 hours or until tomorrow, and Hide an element.">
           <img class="fr" src="img/ipad-iphone-fr.webp" width="1600" height="1489" loading="lazy" decoding="async" lang="fr" alt="Bouclier sur un iPad Pro, en menu sous son bouton, et sur un iPhone 17 Pro, en feuille : 15 requêtes bloquées sur cette page, Mettre en pause sur ce site pendant 1 heure, 2 heures ou jusqu’à demain, et Masquer un élément.">
+          <div class="cmp-b">
+          <img class="en" src="img/android-en.webp" width="1600" height="1489" loading="lazy" decoding="async" alt="Bouclier for Android on a tablet and a phone: protection on, the requests blocked today, in the last 7 days and in all, and the addresses it blocked most recently.">
+          <img class="fr" src="img/android-fr.webp" width="1600" height="1489" loading="lazy" decoding="async" lang="fr" alt="Bouclier pour Android sur une tablette et un téléphone : protection activée, les requêtes bloquées aujourd’hui, sur 7 jours et depuis le début, et les dernières adresses bloquées.">
           </div>
+          <div class="cmp-lines" aria-hidden="true"><span class="cmp-line"></span></div>
+          <span class="cmp-knob"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2 2 7l5 5M15 2l5 5-5 5"/></svg></span>
+          <input class="cmp-range" type="range" min="0" max="100" step="1" value="50" aria-label="iPad, iPhone / Android">
+          </div>
+          </div>
+          <figcaption>
+            <div class="cmp-legend"><button class="cmp-side" type="button" data-go="a">iPad · iPhone</button><span class="cmp-hint"><span class="en">Drag the blue line</span><span class="fr">Faites glisser la ligne bleue</span></span><button class="cmp-side" type="button" data-go="b">Android</button></div>
+            <div class="cmp-notes">
+              <p class="cmp-note" data-for="mid"><span class="en">The same protection on iPhone and iPad, and on Android phones and tablets.</span><span class="fr">La même protection sur iPhone et iPad, et sur les téléphones et tablettes Android.</span></p>
+              <p class="cmp-note" data-for="a"><span class="en"><b>Safari on iPhone and iPad.</b> Blocks ads, trackers, pop-up ads and malware sites, with the same menu as on Mac: what was blocked, a pause for the site, and Hide an element.</span><span class="fr"><b>Safari sur iPhone et iPad.</b> Bloque les pubs, les traqueurs, les pop-up et les sites malveillants, avec le même menu que sur Mac : ce qui a été bloqué, une pause pour le site, et Masquer un élément.</span></p>
+              <p class="cmp-note" data-for="b"><span class="en"><b>Android phones and tablets.</b> Blocks ads, trackers and malware sites in Chrome and in every app, on the device itself: no server, no account. It works at the address level, so empty ad spaces can remain and YouTube's video ads stay. <a href="android.html">Download for Android</a></span><span class="fr"><b>Téléphones et tablettes Android.</b> Bloque les pubs, les traqueurs et les sites malveillants dans Chrome et dans toutes les apps, sur l’appareil même : pas de serveur, pas de compte. Le blocage se fait au niveau des adresses : des espaces vides peuvent rester, et les publicités vidéo de YouTube restent. <a href="android.html">Télécharger pour Android</a></span></p>
+            </div>
+          </figcaption>
         </figure>
       </div>
     </section>
@@ -231,7 +299,7 @@ a.edge-btn { text-decoration: none; }
       <p class="intro reveal"><span class="en">The same blocking and the same menu in your computer's other browsers. Free for 7 days, then one payment of 1,99 € unlocks it in all your browsers, for good. Already bought Bouclier on the App Store? Your code is free: open the app and choose “Get my free code”.</span><span class="fr">Le même blocage et le même menu dans les autres navigateurs de votre ordinateur. Gratuit pendant 7 jours, puis un seul paiement de 1,99 € le débloque dans tous vos navigateurs, pour toujours. Vous avez acheté Bouclier sur l’App Store ? Votre code est gratuit : ouvrez l’app et choisissez « Obtenir mon code gratuit ».</span></p>
       <div class="browsers">
         <div class="browser reveal"><h3>Chrome</h3><a href="https://chromewebstore.google.com/detail/bouclier/ibcefekgkchdbpmjcopdnodhefgbpndo"><img class="store-badge live" src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Available in the Chrome Web Store" width="165" height="50"></a></div>
-        <div class="browser reveal d1"><h3>Edge</h3><a href="https://microsoftedge.microsoft.com/addons/detail/bouclier/bajmaipppnmhpoiadckmlekgiejabhmd"><img class="store-badge live" src="img/get-it-for-edge.svg" alt="Get it for Microsoft Edge" width="150" height="50"></a></div>
+        <div class="browser reveal d1"><h3>Edge</h3><a href="https://microsoftedge.microsoft.com/addons/detail/bouclier/bajmaipppnmhpoiadckmlekgiejabhmd"><img class="store-badge live" src="img/get-it-from-edge-addons.svg" alt="Get it from Microsoft Edge Add-ons" width="180" height="50"></a></div>
         <div class="browser reveal d2"><h3>Firefox</h3><a href="https://addons.mozilla.org/firefox/addon/bouclier/"><img class="store-badge live" src="https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png" alt="Get the add-on for Firefox" width="143" height="50"></a></div>
         <div class="browser reveal d2"><h3>Android</h3><a href="android.html"><img class="store-badge live" src="img/download-for-android.svg" alt="Download for Android" width="150" height="50"></a></div>
       </div>
@@ -373,6 +441,105 @@ a.edge-btn { text-decoration: none; }
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     els.forEach(function (e) { io.observe(e); });
+  })();
+  // Apple | Android sliders. --pos is where the slanted line crosses the middle of the picture, in %
+  // of its width; it runs from -dx (all Android) to 100 + dx (all Apple), dx being how far the line
+  // leans from the middle to the top or the bottom edge.
+  (function () {
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.cmp').forEach(function (box) {
+      var fig = box.closest('figure'), range = box.querySelector('.cmp-range'), knob = box.querySelector('.cmp-knob');
+      var tilt = (parseFloat(box.getAttribute('data-tilt')) || 30) * Math.PI / 180, tan = Math.tan(tilt);
+      var W = 0, H = 0, dx = 0, pos = 50, anim = 0, drag = null, touched = false;
+      box.style.setProperty('--tilt', (tilt * 180 / Math.PI) + 'deg');
+
+      function share() { return (pos + dx) / (100 + 2 * dx); }   // 0 = all Android, 1 = all Apple
+      function name(go) { return fig.querySelector('[data-go="' + go + '"]').innerText; }
+      function draw() {
+        pos = Math.max(-dx, Math.min(100 + dx, pos));
+        box.style.setProperty('--pos', pos + '%');
+        // the knob sits where the line crosses the middle; with the line pushed out, it waits at the edge
+        knob.style.left = Math.max(24, Math.min(W - 24, pos / 100 * W)) + 'px';
+        var t = share(), side = t > 0.985 ? 'a' : t < 0.015 ? 'b' : 'mid', p = Math.round(t * 100);
+        range.value = p;
+        if (fig.getAttribute('data-side') !== side) fig.setAttribute('data-side', side);
+        range.setAttribute('aria-valuetext', side === 'a' ? name('a') : side === 'b' ? name('b') : name('a') + ' ' + p + ' %, ' + name('b') + ' ' + (100 - p) + ' %');
+      }
+      function measure() {
+        W = box.offsetWidth; H = box.offsetHeight;
+        if (!W || !H) return;
+        dx = tan * H / 2 / W * 100;
+        box.style.setProperty('--dx', dx + '%');
+        box.querySelector('.cmp-line').style.height = (H / Math.cos(tilt) + 12) + 'px';
+        draw();
+      }
+      function go(t, ms) {   // glide to a share of Apple (0..1)
+        cancelAnimationFrame(anim);
+        var from = pos, to = -dx + t * (100 + 2 * dx), start = performance.now();
+        if (still || !ms) { pos = to; draw(); return; }
+        (function step(now) {
+          var k = Math.min(1, (now - start) / ms), e = 1 - Math.pow(1 - k, 3);
+          pos = from + (to - from) * e; draw();
+          if (k < 1) anim = requestAnimationFrame(step);
+        })(start);
+      }
+      function follow(e) {
+        // the line stays under the pointer, wherever on its slant it is held; in the outer 15 % the
+        // line moves faster, so that reaching the picture's edge pushes it all the way out
+        var b = box.getBoundingClientRect(), x = (e.clientX - b.left) / b.width * W, y = (e.clientY - b.top) / b.height * H;
+        var u = Math.max(0, Math.min(100, (x + (y - H / 2) * tan) / W * 100)), E = 15;
+        cancelAnimationFrame(anim);
+        pos = u < E ? -dx + u / E * (E + dx) : u > 100 - E ? 100 - E + (u - 100 + E) / E * (E + dx) : u;
+        draw();
+      }
+      box.addEventListener('pointerdown', function (e) {
+        if (e.button > 0) return;
+        touched = true;
+        drag = { id: e.pointerId, x: e.clientX, y: e.clientY, on: e.pointerType === 'mouse' };
+        if (drag.on) { box.setPointerCapture(e.pointerId); box.classList.add('dragging'); follow(e); e.preventDefault(); }
+      });
+      box.addEventListener('pointermove', function (e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        if (!drag.on) {   // on a touch screen, a sideways move drags and an upright one scrolls the page
+          var mx = Math.abs(e.clientX - drag.x), my = Math.abs(e.clientY - drag.y);
+          if (my > 8 && my > mx) { drag = null; return; }
+          if (mx < 6) return;
+          drag.on = true; box.setPointerCapture(e.pointerId); box.classList.add('dragging');
+        }
+        follow(e);
+      });
+      function release(e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        var was = drag.on; drag = null; box.classList.remove('dragging');
+        if (was) { var t = share(); if (t > 0.92) go(1, 260); else if (t < 0.08) go(0, 260); }   // near an end: go all the way
+      }
+      box.addEventListener('pointerup', release);
+      box.addEventListener('pointercancel', release);
+      range.addEventListener('input', function () { touched = true; cancelAnimationFrame(anim); pos = -dx + range.value / 100 * (100 + 2 * dx); draw(); });
+      range.addEventListener('focus', function () { try { if (range.matches(':focus-visible')) box.classList.add('kbd'); } catch (e) { box.classList.add('kbd'); } });
+      range.addEventListener('blur', function () { box.classList.remove('kbd'); });
+      fig.querySelectorAll('.cmp-side').forEach(function (b) {
+        b.addEventListener('click', function () {
+          touched = true;
+          var a = b.getAttribute('data-go') === 'a', on = fig.getAttribute('data-side') === (a ? 'a' : 'b');
+          go(on ? 0.5 : a ? 1 : 0, 650);   // a second press brings the line back to the middle
+        });
+      });
+      if (window.ResizeObserver) new ResizeObserver(measure).observe(box); else addEventListener('resize', measure);
+      measure();
+      // once in view, the line sways a little to show it moves
+      if (!still && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (en) {
+          if (!en[0].isIntersecting) return;
+          io.disconnect();
+          setTimeout(function () {
+            if (touched) return;
+            go(0.62, 700); setTimeout(function () { if (!touched) go(0.5, 700); }, 800);
+          }, 1500);
+        }, { threshold: 0.6 });
+        io.observe(box);
+      }
+    });
   })();
   document.getElementById('lang-toggle').addEventListener('click', function () {
     var next = document.documentElement.lang === 'fr' ? 'en' : 'fr';
